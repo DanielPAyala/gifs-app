@@ -18,7 +18,7 @@ export class GifsService {
     return [...this._tagsHistory];
   }
 
-  private organizeHistory(tag: string) {
+  private organizeHistory(tag: string): void {
     tag = tag.toLowerCase();
 
     if (this._tagsHistory.includes(tag)) {
@@ -31,6 +31,8 @@ export class GifsService {
 
   searchTag(tag: string): void {
     if (tag.length === 0) return;
+
+    if (this._tagsHistory[0] === tag.toLowerCase()) return;
     this.organizeHistory(tag);
 
     const params = new HttpParams()
